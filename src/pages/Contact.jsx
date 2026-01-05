@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FiSend, FiMail, FiMapPin, FiCheckCircle } from "react-icons/fi";
+import { FiSend, FiMail, FiMapPin, FiCheckCircle, FiGithub, FiLinkedin } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import { toast, Toaster } from "react-hot-toast";
 
@@ -13,7 +14,6 @@ export default function Contact() {
     e.preventDefault();
     setIsSending(true);
 
-    // Using explicit template parameters to ensure data mapping matches EmailJS dashboard
     const templateParams = {
       user_name: form.current.user_name.value,
       user_email: form.current.user_email.value,
@@ -45,7 +45,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 max-w-7xl mx-auto px-6">
-      {/* Toast container for professional notifications */}
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="text-center mb-16">
@@ -60,27 +59,49 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         className="grid grid-cols-1 lg:grid-cols-2 gap-10 bg-[#0a0c10] border border-white/5 p-8 md:p-16 rounded-[4rem]"
       >
-        <div>
-          <p className="text-slate-400 text-lg mb-12">
-            I'm currently available for MERN Stack projects and full-time roles.
-            Let's build something extraordinary together.
-          </p>
-          <div className="space-y-6">
-            <div className="flex items-center gap-6 p-6 bg-white/5 rounded-3xl border border-white/5 hover:border-coral/30 transition-all">
-              <FiMail className="text-coral" size={24} />
-              <span className="text-white font-bold tracking-tight text-sm md:text-base">
-                mehersbonna17131713@gmail.com
-              </span>
-            </div>
-            <div className="flex items-center gap-6 p-6 bg-white/5 rounded-3xl border border-white/5 hover:border-slate-blue/30 transition-all">
-              <FiMapPin className="text-slate-blue" size={24} />
-              <span className="text-white font-bold tracking-tight">
-                Dhaka, Bangladesh
-              </span>
+        <div className="flex flex-col justify-between">
+          <div>
+            <p className="text-slate-400 text-lg mb-10 leading-relaxed">
+              I'm currently available for MERN Stack projects and full-time roles.
+              Let's build something extraordinary together.
+            </p>
+            
+            {/* Contact Details with Socials */}
+            <div className="grid grid-cols-1 gap-4">
+              {/* Email */}
+              <div className="flex items-center gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-coral/30 transition-all group">
+                <FiMail className="text-coral group-hover:scale-110 transition-transform" size={20} />
+                <span className="text-white font-bold text-xs md:text-sm tracking-tight">mehersbonna17131713@gmail.com</span>
+              </div>
+
+              {/* LinkedIn */}
+              <a href="https://www.linkedin.com/in/bonna-akterr/" target="_blank" rel="noreferrer" className="flex items-center gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-coral/30 transition-all group">
+                <FiLinkedin className="text-coral group-hover:scale-110 transition-transform" size={20} />
+                <span className="text-white font-bold text-xs md:text-sm tracking-tight uppercase">LinkedIn Profile</span>
+              </a>
+
+              {/* GitHub */}
+              <a href="https://github.com/mehers-bonna" target="_blank" rel="noreferrer" className="flex items-center gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-coral/30 transition-all group">
+                <FiGithub className="text-coral group-hover:scale-110 transition-transform" size={20} />
+                <span className="text-white font-bold text-xs md:text-sm tracking-tight uppercase">GitHub Repositories</span>
+              </a>
+
+              {/* WhatsApp */}
+              <a href="https://wa.me/8801324534240" target="_blank" rel="noreferrer" className="flex items-center gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 hover:border-coral/30 transition-all group">
+                <FaWhatsapp className="text-coral group-hover:scale-110 transition-transform" size={20} />
+                <span className="text-white font-bold text-xs md:text-sm tracking-tight">+880 1324-534240</span>
+              </a>
+
+              {/* Location */}
+              <div className="flex items-center gap-5 p-5 bg-white/5 rounded-2xl border border-white/5">
+                <FiMapPin className="text-coral" size={20} />
+                <span className="text-white font-bold text-xs md:text-sm tracking-tight uppercase">Dhaka, Bangladesh</span>
+              </div>
             </div>
           </div>
         </div>
 
+        {/* Working Form */}
         <form ref={form} onSubmit={sendEmail} className="space-y-4">
           <input
             type="text"
@@ -112,17 +133,7 @@ export default function Contact() {
                 : "bg-coral text-white hover:shadow-2xl hover:shadow-coral/40"
             }`}
           >
-            {isSending ? (
-              "Sending..."
-            ) : isSent ? (
-              <>
-                Sent Successfully <FiCheckCircle />
-              </>
-            ) : (
-              <>
-                Send Message <FiSend />
-              </>
-            )}
+            {isSending ? "Sending..." : isSent ? <>Sent Successfully <FiCheckCircle /></> : <>Send Message <FiSend /></>}
           </button>
         </form>
       </motion.div>
