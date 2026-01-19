@@ -68,7 +68,7 @@ const portfolioData = {
 
   Contact: {
     Email: "mehersbonna17131713@gmail.com",
-    Phone: "+8801324534240", // Updated with your WhatsApp number
+    Phone: "+8801324534240",
     Location: "Dhaka, Bangladesh",
     LinkedIn: "https://www.linkedin.com/in/bonna-akterr/",
     GitHub: "https://github.com/mehers-bonna"

@@ -9,16 +9,22 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 max-w-7xl mx-auto px-6">
+    <section id="about" className="py-24 max-w-7xl mx-auto px-6 -mt-80">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div>
+        {/* LEFT SIDE: Text & Stats */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           <h2 className="text-4xl font-black text-white mb-8 tracking-tighter uppercase">
             About <span className="text-coral">Me</span>
           </h2>
           
           <div className="space-y-6 text-slate-400 text-lg leading-relaxed mb-8">
             <p>
-              Hello! I'm <span className="text-white font-bold">Bonna Akter</span>, a MERN Stack Developer who finds joy in turning complex problems into elegant digital solutions. My journey into programming started with a deep curiosity about how the web works, which eventually led me to graduate from <span className="text-white">Pallabi Government College</span> and dive headfirst into the world of JavaScript.
+              Hello! I'm <span className="text-white font-bold">Bonna Akter</span>, a MERN Stack Developer who finds joy in turning complex problems into elegant digital solutions. My journey into programming started with a deep curiosity about how the web works, which eventually led me to dive headfirst into the world of JavaScript.
             </p>
             
             <p>
@@ -34,10 +40,15 @@ export default function About() {
             {stats.map((stat, i) => (
               <motion.div 
                 key={i} 
-                initial={{ opacity: 0, y: 20 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
+                initial={{ opacity: 0, scale: 0.5 }} 
+                whileInView={{ opacity: 1, scale: 1 }} 
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }} 
+                transition={{ 
+                  duration: 0.5, 
+                  delay: i * 0.1,
+                  type: "spring",
+                  stiffness: 100 
+                }} 
                 className="p-6 bg-white/5 rounded-2xl border border-white/5 text-center hover:border-coral/30 transition-colors"
               >
                 <h3 className="text-3xl font-black text-coral">{stat.value}</h3>
@@ -47,11 +58,25 @@ export default function About() {
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="relative p-10 bg-gradient-to-br from-coral/10 to-transparent border border-coral/10 rounded-[3rem] overflow-hidden group">
+        {/* RIGHT SIDE: Philosophy Card */}
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="relative p-10 bg-gradient-to-br from-coral/10 to-transparent border border-coral/10 rounded-[3rem] overflow-hidden group"
+        >
           {/* Background Decorative Element */}
-          <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-coral/5 rounded-full blur-3xl group-hover:bg-coral/10 transition-all duration-500" />
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3] 
+            }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="absolute -bottom-10 -right-10 w-40 h-40 bg-coral/5 rounded-full blur-3xl group-hover:bg-coral/10 transition-all duration-500" 
+          />
           
           <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
              My Philosophy
@@ -61,10 +86,16 @@ export default function About() {
           </p>
           
           <div className="mt-8 flex items-center gap-4">
-            <div className="h-[2px] w-12 bg-coral" />
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: 48 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="h-[2px] bg-coral" 
+            />
             <span className="text-xs uppercase tracking-widest font-black text-white/50">Bonna Akter</span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
